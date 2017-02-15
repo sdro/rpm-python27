@@ -83,6 +83,7 @@
 %define libdirname lib
 %define sharedlib %(if [ "%{config_sharedlib}" = yes ]; then echo --enable-shared; else echo ; fi)
 %define include_sharedlib %(if [ "%{config_sharedlib}" = yes ]; then echo 1; else echo 0; fi)
+%define ldflags %(if [ "%{config_sharedlib}" = yes ]; then echo "LDFLAGS=\"-Wl,-rpath=%{__prefix}/%{libdirname}\""; else echo ; fi)
 
 
 ##############
@@ -290,7 +291,8 @@ echo "Setting for include_tkinter: %{include_tkinter}"
 echo "Setting for libdirname: %{libdirname}"
 echo "Setting for sharedlib: %{sharedlib}"
 echo "Setting for include_sharedlib: %{include_sharedlib}"
-./configure --enable-unicode=ucs4 --with-signal-module --with-threads %{sharedlib} %{ipv6} %{pymalloc} --prefix=%{__prefix}
+echo "Setting for ldflags: %{ldflags}"
+./configure --enable-unicode=ucs4 --with-signal-module --with-threads %{sharedlib} %{ipv6} %{pymalloc} --prefix=%{__prefix} %{ldflags}
 make %{_smp_mflags}
 
 
@@ -402,7 +404,6 @@ rm -f mainpkg.files tools.files
 
 %{__prefix}/%{libdirname}/python%{libvers}/lib-dynload/
 %{__prefix}/%{libdirname}/python%{libvers}/lib2to3/tests/data/
-%{__prefix}/%{libdirname}/debug/usr/bin/python%{libvers}.debug-gdb.py
 %{__prefix}/%{libdirname}/pkgconfig/python-%{libvers}.pc
 
 %attr(755,root,root) %dir %{__prefix}/include/python%{libvers}
