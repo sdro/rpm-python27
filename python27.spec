@@ -3,7 +3,7 @@
 # sudo yum -y install rpmdevtools && rpmdev-setuptree
 # sudo yum -y install tk-devel tcl-devel expat-devel db4-devel gdbm-devel sqlite-devel bzip2-devel openssl-devel ncurses-devel readline-devel
 # wget https://raw.github.com/nmilford/rpm-python27/master/python27.spec -O ~/rpmbuild/SPECS/python27.spec
-# wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz -O ~/rpmbuild/SOURCES/Python-2.7.10.tgz
+# wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz -O ~/rpmbuild/SOURCES/Python-2.7.13.tgz
 # QA_RPATHS=$[ 0x0001|0x0010 ] rpmbuild -bb ~/rpmbuild/SPECS/python27.spec
 
 
@@ -16,10 +16,10 @@
 
 #  Define Constants
 %define name python27
-%define version 2.7.10
+%define version 2.7.13
 %define libvers 2.7
 %define release 1
-%define __prefix /usr
+%define __prefix /opt
 
 
 #  Build tkinter?  "auto" enables it if /usr/bin/wish exists.
@@ -39,8 +39,8 @@
 
 
 #  Enable IPV6?
-%define config_ipv6 yes
 %define config_ipv6 no
+%define config_ipv6 yes
 
 
 #  Use pymalloc?
@@ -54,8 +54,8 @@
 
 
 #  Build shared libraries or .a library?
-%define config_sharedlib yes
 %define config_sharedlib no
+%define config_sharedlib yes
 
 
 #  Location of the HTML directory to place tho documentation in?
@@ -175,6 +175,10 @@ formats.
 %endif
 
 %changelog
+* Wed Feb 15 2017 sdro <sdroeschler@gmail.com> [2.7.13-1]
+- Updated to 2.7.13
+- prefix /opt
+
 * Sat Sep 5 2015 thinker0 <thinker0@gmail.com> [2.7.10-1]
 - Updated to 2.7.10
 
