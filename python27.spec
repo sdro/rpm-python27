@@ -402,12 +402,11 @@ rm -f mainpkg.files tools.files
 %doc LICENSE Misc/ACKS Misc/HISTORY Misc/NEWS
 %doc %{__prefix}/share/man/man1/python2.7.1
 
-%{__prefix}/%{libdirname}/python%{libvers}/lib-dynload/
-%{__prefix}/%{libdirname}/python%{libvers}/lib2to3/tests/data/
+%dir %{__prefix}/%{libdirname}/python%{libvers}/lib-dynload/
+%dir %{__prefix}/%{libdirname}/python%{libvers}/lib2to3/tests/data/
 %{__prefix}/%{libdirname}/pkgconfig/python-%{libvers}.pc
 
 %attr(755,root,root) %dir %{__prefix}/include/python%{libvers}
-%attr(755,root,root) %dir %{__prefix}/%{libdirname}/python%{libvers}/
 %attr(755,root,root) %dir %{__prefix}/%{libdirname}/python%{libvers}/
 
 %if %{include_sharedlib}
