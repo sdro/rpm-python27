@@ -19,8 +19,8 @@
 %define name python27
 %define version 2.7.13
 %define libvers 2.7
-%define release 1
-%define __prefix /opt
+%define release 2
+%define __prefix /opt/python-%{version}
 
 
 #  Build tkinter?  "auto" enables it if /usr/bin/wish exists.
@@ -175,6 +175,10 @@ Group: Development/Documentation
 Documentation relating to the Python programming language in HTML and info
 formats.
 %endif
+
+%changelog
+* Wed Feb 21 2017 sdro <sdroeschler@gmail.com> [2.7.13-2]
+- prefix /opt/python-%{version}
 
 %changelog
 * Wed Feb 15 2017 sdro <sdroeschler@gmail.com> [2.7.13-1]
